@@ -8,7 +8,6 @@ class UserProfile(models.Model):
         ('Other', 'Other'),
     ]
     name = models.CharField(max_length=100)
-    username = models.CharField(max_length=100, unique=True)
     age = models.IntegerField()
     height = models.FloatField(help_text="Enter height in centimeters")
     weight = models.FloatField(help_text="Enter weight in kilograms")
@@ -20,7 +19,7 @@ class UserProfile(models.Model):
     date_joined = models.DateTimeField(default=timezone.now)
     password=models.CharField(max_length=10)
     def __str__(self):
-        return self.username
+        return self.name
 
 class Add_Workout(models.Model):
     user=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
@@ -29,7 +28,7 @@ class Add_Workout(models.Model):
     ('Weight Gain', 'Weight Gain'),
     ]
     workout_type=models.CharField(max_length=100,choices=WORKOUT_TYPES)
-    workout_name=models.CharField(max_length=100)
+    workout_name=models.CharField(max_length=100,primary_key=True)
     workout_duration=models.IntegerField()
     workout_date=models.DateTimeField(default=timezone.now)
     calories_burned = models.FloatField(null=True, blank=True)

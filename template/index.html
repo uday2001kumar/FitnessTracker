@@ -1,140 +1,144 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fitness Tracker</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Modern CSS Styling -->
     <style>
+        :root {
+            --primary-color: #ff4500;
+            --text-color: #ffffff;
+            --dark-bg: #121212;
+            --highlight: #ffcc00;
+        }
+
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', sans-serif;
-            background: #f0f4f8;
+            background-color: #f5f7fa;
+            color: #111;
         }
 
-        /* Modern Navbar */
+        /* Navbar */
         .navbar {
-            background: linear-gradient(90deg, #004e92, #00c8ff);
-            padding: 0.8rem 2rem;
-            border-bottom: 2px solid #00c8ff;
-            transition: all 0.3s ease;
+           background-color: #003366;
+
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .navbar-brand {
-            color: #ffffff;
-            font-size: 1.9rem;
+            color: var(--primary-color);
             font-weight: bold;
+            font-size: 1.8rem;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
         .navbar-toggler-icon {
-            background-color: #ffcc00;
+            background-color: var(--highlight);
         }
 
         .navbar-nav .nav-link {
-            color: #ffffff !important;
-            margin-left: 15px;
+            color: var(--text-color) !important;
             font-weight: 500;
             font-size: 1rem;
-            transition: color 0.3s ease;
+            margin-left: 20px;
+            transition: 0.3s ease-in-out;
         }
 
-        .navbar-nav .nav-link:hover {
-            color: #ffcc00 !important;
-            text-decoration: underline;
-        }
-
+        .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link.active {
-            color: #ffcc00 !important;
+            color: var(--primary-color) !important;
             text-decoration: underline;
         }
 
-        /* Hero Section */
+        /* Hero section placeholder (optional for home) */
         .hero {
-            width: 100%;
-            height: 80vh;
             background: url("{% static 'images/img7.webp' %}") no-repeat center center/cover;
+            height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 20px;
+            text-align: center;
+            padding: 2rem;
         }
 
-        /* Central Card Style */
-        .card-style {
-            background-color: #ffffff;
-            border: 3px solid #00c8ff;
-            border-radius: 15px;
-            padding: 30px;
-            color: #002244;
-            max-width: 400px;
-            width: 100%;
-            transition: 0.3s;
-            box-shadow: 6px 6px 0px #00c8ff;
-        }
-
-        .card-style:hover {
-            transform: translateY(-6px);
-            box-shadow: 8px 8px 0px #00c8ff;
-        }
-
-        .form-label {
+        .hero h1 {
+            font-size: 3.5rem;
             font-weight: bold;
-            color: #002244;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
 
-        .form-control {
-            border: 2px solid #00c8ff;
-            border-radius: 8px;
+        .hero h4 {
+            color: var(--highlight);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 500;
         }
 
-        .btn-primary {
-            background-color: #ffcc00;
-            color: #002244;
+        .btn-modern {
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 30px;
+            padding: 12px 30px;
             font-weight: bold;
-            border-radius: 8px;
+            font-size: 1rem;
             border: none;
+            transition: all 0.3s ease-in-out;
         }
 
-        .btn-primary:hover {
-            background-color: #e6b800;
+        .btn-modern:hover {
+            background-color: #e03e00;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            padding: 60px 20px 30px;
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #1b1b1b;
+        }
+
+        .section-title .highlight {
+            color: var(--primary-color);
         }
     </style>
 </head>
 <body>
 
 <!-- Navbar -->
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand">🏋️ Fitness Tracker</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'adminlogin' %}">AdminLogin</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">UserLogin</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Signup</a></li>
-                </ul>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">FITNESS TRACKER</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'adminlogin' %}">Admin Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">User Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Signup</a></li>
+            </ul>
         </div>
-    </nav>
-</header>
+    </div>
+</nav>
 
-<!-- Dynamic Content Section -->
+<!-- Dynamic Page Content -->
 {% block content %}
 {% endblock %}
 
-<!-- Bootstrap Script -->
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

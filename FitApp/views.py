@@ -143,7 +143,8 @@ def profile(request):
     height_m = height_cm / 100
     bmi = round(weight / (height_m ** 2), 2)
     bmi_status = "Thin" if bmi < 18.5 else "Normal" if bmi < 25 else "Overweight" if bmi < 30 else "Obese"
-
+    from datetime import date
+    today=date.today()
     if gender.lower() == "male":
         bmr = round(10 * weight + 6.25 * height_cm - 5 * age + 5)
         lbm = round(0.407 * weight + 0.267 * height_cm - 19.2, 2)
@@ -213,7 +214,7 @@ def profile(request):
     bone_mass = round(0.15 * lbm, 2)
     context = {
         'userprofile':userprofile,
-
+        'today':today,
         'weight':weight,
         'control_status':control_status,
         'height':height_cm,
@@ -274,7 +275,6 @@ def update_profile(request):
     if request.method=="POST":
         user_email=request.session['email']
         name=request.POST["name"]
-        username=request.POST["username"]
         age=int(request.POST["age"])
         gender=request.POST["gender"]
         dob=request.POST["dob"]
@@ -284,7 +284,6 @@ def update_profile(request):
         email=request.POST["email"]
         user=UserProfile.objects.get(email=user_email)
         user.name=name
-        user.username=username
         user.age=age
         user.gender=gender
         user.date_joined=dob

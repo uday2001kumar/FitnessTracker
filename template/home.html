@@ -7,82 +7,88 @@
         margin: 0;
         padding: 0;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        overflow: hidden;
+        background-color: #f4f7fb;
     }
 
+    /* Adjusted height and margin-top to avoid overlapping with navbar */
     .simple-hero {
-        position: relative;
-        height: 100vh;
+        height: calc(100vh - 70px); /* Adjust height if your navbar is different */
+        margin-top: 70px; /* Push section below navbar */
         display: flex;
         justify-content: center;
         align-items: center;
-        text-align: center;
-        padding: 20px;
-        overflow: hidden;
+        padding: 40px 20px;
+        background: url("{% static 'images/n1.avif' %}") no-repeat center center/cover;
+        position: relative;
     }
 
-    .simple-hero .content-box {
-        background: rgba(255, 255, 255, 0.385); /* Slightly transparent white */
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        border-radius: 20px;
-        padding: 40px 50px;
-        max-width: 550px;
+    .simple-hero::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
         width: 100%;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-        position: relative; /* To ensure content is on top of video */
+        height: 100%;
+        
+    }
+
+    .content-box {
+        position: relative;
         z-index: 2;
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 20px;
+        padding: 50px 40px;
+        max-width: 600px;
+        width: 100%;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        text-align: center;
     }
 
-    .simple-hero h1 {
+    .content-box h1 {
         font-size: 2.8rem;
-        color: #020202; /* Dark color for text */
+        color: #1b1b1b;
+        font-weight: bold;
         margin-bottom: 20px;
-        font-weight: 700;
-        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
     }
 
-    .simple-hero p {
+    .content-box p {
         font-size: 1.2rem;
-        color: #090909; /* Soft gray for the paragraph text */
+        color: #333;
         margin-bottom: 30px;
     }
 
-    .simple-hero a.btn {
-        background: linear-gradient(to right, #66a6ff, #66a6ff);
+    .content-box a.btn {
+        background: linear-gradient(to right, #ff4500, #ff6a00);
         color: #fff;
-        font-weight: bolder;
-        text-decoration: none;
-        padding: 12px 30px;
-        font-size: 1rem;
         font-weight: 600;
+        padding: 12px 28px;
+        font-size: 1rem;
         border-radius: 30px;
-        transition: background 0.3s ease;
+        text-decoration: none;
+        border: none;
+        transition: all 0.3s ease-in-out;
+        display: inline-block;
     }
 
-    .simple-hero a.btn:hover {
-        background: linear-gradient(to right, #5586dd, #70d9f4);
+    .content-box a.btn:hover {
+        background: linear-gradient(to right, #e03e00, #ff9900);
     }
 
-    /* Video Styles */
-    .video-background {
-        position: absolute;
-        top: 10px;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: 1;
+    @media screen and (max-width: 768px) {
+        .content-box h1 {
+            font-size: 2rem;
+        }
+
+        .content-box p {
+            font-size: 1rem;
+        }
     }
 </style>
 
 <main>
     <section class="simple-hero">
-        <!-- Background Video -->
-        <video class="video-background" autoplay loop muted>
-            <source src="{% static 'images/workout19.mp4' %}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-
         <div class="content-box">
             <h1>Track Your Fitness Journey</h1>
             <p>Stay fit and healthy by tracking your workouts and nutrition.</p>

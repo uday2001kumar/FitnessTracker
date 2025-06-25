@@ -3,12 +3,10 @@
 
 {% block content %}
 <style>
-  body, html {
+  body {
     margin: 0;
     padding: 0;
-    height: 100%;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #cce2ff, #e0f7fa);
+    font-family: 'Segoe UI', sans-serif;
   }
 
   .admin-hero {
@@ -20,26 +18,28 @@
   }
 
   .admin-card {
-    background: #ffffff;
-    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
     padding: 40px 30px;
     max-width: 420px;
     width: 100%;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-    border: 1px solid #e0e0e0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
   }
 
   .admin-card h3 {
-    color: #333;
     text-align: center;
+    color: #1b1b1b;
+    font-size: 2rem;
     margin-bottom: 25px;
-    font-size: 28px;
-    font-weight: 600;
+    font-weight: bold;
   }
 
   .admin-card label {
-    color: #555;
     font-weight: 500;
+    color: #333;
     margin-bottom: 6px;
     display: block;
   }
@@ -47,48 +47,50 @@
   .admin-card input {
     width: 100%;
     padding: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     border-radius: 10px;
-    border: 1px solid #ccc;
-    background-color: #f7f9fc;
-    font-size: 15px;
-    color: #333;
-    outline: none;
+    border: 1px solid #ccd6dd;
+    background-color: #f9f9f9;
+    font-size: 0.95rem;
+    color: #222;
+    transition: all 0.3s ease-in-out;
   }
 
   .admin-card input:focus {
-    border-color: #89b9ff;
+    border-color: #ff4500;
     background-color: #fff;
+    outline: none;
   }
 
   .admin-card button {
     width: 100%;
     padding: 12px;
-    background: #0d2f6a;
+    background: linear-gradient(to right, #ff4500, #ff6a00);
     color: #fff;
-    font-weight: bold;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 1rem;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: background 0.3s;
   }
 
   .admin-card button:hover {
-    background: #0d2f6ae1;
+    background: linear-gradient(to right, #e03e00, #ff9900);
   }
 
   .admin-card p {
-    color: #555;
-    font-size: 14px;
     text-align: center;
-    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #444;
+    margin-top: 12px;
   }
 
   .text-danger {
-    color: #d32f2f;
+    color: #e74c3c;
     font-weight: 500;
     text-align: center;
+    margin-top: 10px;
   }
 
   @media (max-width: 500px) {
@@ -101,11 +103,13 @@
 <div class="admin-hero">
   <div class="admin-card">
     <h3>Admin Login</h3>
+
     {% if messages %}
       {% for i in messages %}
-        <p style="color: #333; font-size: 16px; text-align: center;">{{ i }}</p>
+        <p>{{ i }}</p>
       {% endfor %}
     {% endif %}
+
     <form method="POST">
       {% csrf_token %}
       <label for="username">Username</label>
@@ -117,7 +121,7 @@
       <button type="submit">Login</button>
 
       {% if error %}
-        <p class="text-danger mt-3">{{ error }}</p>
+        <p class="text-danger">{{ error }}</p>
       {% endif %}
     </form>
   </div>

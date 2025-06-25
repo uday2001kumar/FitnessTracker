@@ -52,8 +52,8 @@
     }
 
     .sidebar {
-      width: 23.5%;
-      background: linear-gradient(to bottom right, #e0c3fc,   #b8c5d2); /* lavender to light blue */
+      width: 25.5%;
+      background: linear-gradient(to bottom right, #9b7cb8,   #648bb3); /* lavender to light blue */
       padding: 30px;
       box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
       color: #222;
@@ -215,7 +215,6 @@
       {% endif %}
       <table class="profile-table">
         <tr><td>Name:</td><td>{{ userprofile.name }}</td></tr>
-        <tr><td>Username:</td><td>{{ userprofile.username }}</td></tr>
         <tr><td>Gender:</td><td>{{ userprofile.gender }}</td></tr>
         <tr><td>DOB:</td><td>{{ userprofile.date_of_birth|date:"d M Y" }}</td></tr>
         <tr><td>Age:</td><td>{{ userprofile.age }}</td></tr>
